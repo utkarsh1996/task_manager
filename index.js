@@ -1,20 +1,31 @@
 const fs = require('fs');
+const express=require('express');
 const readline = require('readline');
 const {google} = require('googleapis');
 
+const app=express();
+
+app.use(express.json());
+global.content2;
 // If modifying these scopes, delete token.json.
-const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
 const TOKEN_PATH = 'token.json';
 
 // Load client secrets from a local file.
-fs.readFile('credentials.json', (err, content) => {
-  if (err) return console.log('Error loading client secret file:', err);
-  // Authorize a client with credentials, then call the Google Sheets API.
-  authorize(JSON.parse(content), listMajors);
+app.get('/',(req,res)=>{
+
+  fs.readFile('credentials.json', (err, content) => {
+    if (err) return console.log('Error loading client secret file:', err);
+    // Authorize a client with credentials, then call the Google Sheets API.
+    authorize(JSON.parse(content), getAll);
+  });
+  console.log('Important',rows);
+  res.status(200).json({msg:rows});
 });
+  
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -71,22 +82,32 @@ function getNewToken(oAuth2Client, callback) {
  * @see https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
  * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
  */
-function listMajors(auth) {
+function getAll(auth) {
   const sheets = google.sheets({version: 'v4', auth});
+  
   sheets.spreadsheets.values.get({
-    spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-    range: 'Class Data!A2:E',
+    spreadsheetId: '1uqx6V4sODuvjSS6N2qV8W8l7E9yyEH9Kv-XP4dF_dBk',
+    range: 'Sheet1!A2:I',
   }, (err, res) => {
     if (err) return console.log('The API returned an error: ' + err);
-    const rows = res.data.values;
+    rows = res.data.values;
     if (rows.length) {
-      console.log('Name, Major:');
+      console.log('taskid	taskname	taskdesc	assignedto	assigneddate	deadline	completiondate	status	comments	');
       // Print columns A and E, which correspond to indices 0 and 4.
       rows.map((row) => {
-        console.log(`${row[0]}, ${row[4]}`);
+        console.log(`${row[0]}, ${row[1]},${row[2]},${row[3]},${row[4]},${row[5]},${row[6]},${row[7]},${row[8]}`);
+        
       });
+      content2=rows;
+        console.log('Content',content2);
     } else {
       console.log('No data found.');
     }
   });
 }
+
+app.use('/api/sheets',require('./routes/api/sheets'));
+
+const port=process.env.PORT||5000;
+
+app.listen(port,()=>console.log(`Server started on port ${port}`));
