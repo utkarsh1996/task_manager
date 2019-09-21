@@ -4,7 +4,6 @@
       <div class="row">
           <input type="text" class="search-box" [(ngModel)]="assignedToSearch" id="search" placeholder="Search by Assigned to">
           <!-- [(ngModel)]="assignedToSearch" (input)="searchAssigned($event)"-->
-          <input type="submit" class="search-button" (click)="searchAssignedTo()" value="Search">
     </div>
     <div class="sample">Please view sample Google Sheet. <a target="_blank" href="https://docs.google.com/spreadsheets/d/13ej4PSYs5oIxW1BkkD9icsrj86Yxp0m51ExVj58zf2U/edit#gid=0">Click here.</a></div>
 
@@ -13,7 +12,7 @@
     <div class="col-md">
       <div class="header"  id="reject">REJECTED</div>
       <div class="box" *ngFor="let ou of entries, let i=index"  >
-        <div class="accordion" id="accordionExample" *ngIf="ou[7] == 'REJECTED'">
+        <div class="accordion" id="accordionExample" *ngIf="ou[7] == 'REJECTED' && compare(ou[3])">
             <div class="card">
                 <div class="card-header" id="headingTwo">
                         <p>{{ou[1]}}</p>
@@ -28,7 +27,7 @@
     <div class="col-md">
       <div class="header" id="pending">PENDING</div>
       <div class="box" *ngFor="let ou of entries, let i=index" >
-          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='PENDING'">
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='PENDING' && compare(ou[3])">
               <div class="card">
                   <div class="card-header" id="headingTwo">
                           <p>{{ou[1]}}</p>
@@ -43,7 +42,7 @@
     <div class="col-md">
       <div class="header" id="dev">DEVELOPMENT</div>
       <div class="box" *ngFor="let ou of entries, let i=index" >
-          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='DEVELOPMENT'">
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='DEVELOPMENT' && compare(ou[3])">
               <div class="card">
                   <div class="card-header" id="headingTwo">
                           <p>{{ou[1]}}</p>
@@ -58,7 +57,7 @@
     <div class="col-md">
       <div class="header" id="paused">PAUSED</div>
       <div class="box" *ngFor="let ou of entries, let i=index" >
-          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='PAUSED'">
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='PAUSED' && compare(ou[3])">
               <div class="card">
                   <div class="card-header" id="headingTwo">
                           <p>{{ou[1]}}</p>
@@ -73,7 +72,7 @@
     <div class="col-md">
       <div class="header" id="test">TESTING</div>
       <div class="box" *ngFor="let ou of entries, let i=index" >
-          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='TESTING'">
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='TESTING' && compare(ou[3])">
               <div class="card">
                   <div class="card-header" id="headingTwo">
                           <p>{{ou[1]}}</p>
@@ -88,7 +87,7 @@
     <div class="col-md">
       <div class="header" id="prod">PRODUCTION</div>
       <div class="box" *ngFor="let ou of entries, let i=index" >
-          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='PRODUCTION'">
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='PRODUCTION' && compare(ou[3])">
               <div class="card">
                   <div class="card-header" id="headingTwo">
                           <p>{{ou[1]}}</p>

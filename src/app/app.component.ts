@@ -81,6 +81,16 @@ openModal(temp)
     this.editdata = false ;
     
   }
+  compare(cmp)
+{
+  if(cmp.length==0 || cmp=='' || cmp==undefined ||cmp==null)
+  return true ;
+  var str = this.assignedToSearch ;
+
+  return cmp.includes(str)
+
+
+}
   applyData(data)
   {
     var req = [];
@@ -106,12 +116,13 @@ openModal(temp)
     else{
       this.id = this.link.split('/')[5];
     }
-    var res = this.httpGet('https://msunscrumboard.herokuapp.com/api/sheets/'+this.id);
+    var res = this.httpGet('http://localhost:5000/api/sheets/'+this.id);
     this.closeModal();
     console.log(res);
     this.entries= null;
     this.entries= JSON.parse(res);
     this.entries = this.entries.msg ;
+    console.log(this.entries);
   }
   httpGet(theUrl)
   {
@@ -145,7 +156,7 @@ openModal(temp)
   taskArray[6] = this.taskStatus;
   taskArray[7] = this.comments;
   console.log(taskArray);
-  this.httpClient.post('https://msunscrumboard.herokuapp.com/api/sheets/'+this.id,{
+  this.httpClient.post('http://localhost:5000/api/sheets/'+this.id,{
     taskArray
   }).subscribe(
     (data:any) =>{
