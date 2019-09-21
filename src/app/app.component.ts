@@ -19,6 +19,10 @@ export class AppComponent implements OnInit {
   display1 = 'none'  ;
   addTask = 'none';
   editdata:boolean = true ;
+  entries ;
+  index = 1;
+  tempentries;
+  
   ngOnInit()
   {
     this.display = 'block';
@@ -29,9 +33,10 @@ export class AppComponent implements OnInit {
   searchAssignedTo(){
   console.log("assignedToSearch = " + this.assignedToSearch);
 }
-openModal()
+openModal(temp)
   {
     this.display1 = 'block' ;
+    this.tempentries = temp ;
   }
   closeModal()
   {
@@ -66,6 +71,9 @@ openModal()
     var res = this.httpGet('http://localhost:5000/api/sheets/'+id);
     this.closeModal();
     console.log(res);
+    this.entries= null;
+    this.entries= JSON.parse(res);
+    this.entries = this.entries.msg ;
   }
   httpGet(theUrl)
   {

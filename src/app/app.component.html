@@ -10,13 +10,13 @@
   <div class="row">
     <div class="col-md">
       <div class="header"  id="reject">REJECTED</div>
-      <div class="box" *ngFor="let a of arr">
-        <div class="accordion" id="accordionExample">
+      <div class="box" *ngFor="let ou of entries, let i=index"  >
+        <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Rejected'">
             <div class="card">
                 <div class="card-header" id="headingTwo">
-                        <p>Task Title</p>
-                        <p>Assigned to</p>
-                        <button type="button" class="btn btn-info" (click)="openModal()">
+                        <p>{{ou[1]}}</p>
+                        <p>Assigned To: </p><p>{{ou[3]}}</p>
+                        <button type="button" class="btn btn-info" (click)="openModal(ou)">
                         Click for description</button>
                 </div>
             </div>
@@ -25,42 +25,77 @@
     </div>
     <div class="col-md">
       <div class="header" id="pending">PENDING</div>
-      <div class="box">
-          <div *ngFor="let i of arr">
-            {{i}}
-          </div>
+      <div class="box" *ngFor="let ou of entries, let i=index" >
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Pending'">
+              <div class="card">
+                  <div class="card-header" id="headingTwo">
+                          <p>{{ou[1]}}</p>
+                          <p>Assigned To: </p><p>{{ou[3]}}</p>
+                          <button type="button" class="btn btn-info" (click)="openModal(ou)">
+                          Click for description</button>
+                  </div>
+              </div>
+        </div>
         </div>
     </div>
     <div class="col-md">
       <div class="header" id="dev">DEVELOPMENT</div>
-      <div class="box">
-          <div *ngFor="let i of arr">
-            {{i}}
-          </div>
+      <div class="box" *ngFor="let ou of entries, let i=index" >
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Development'">
+              <div class="card">
+                  <div class="card-header" id="headingTwo">
+                          <p>{{ou[1]}}</p>
+                          <p>Assigned To: </p><p>{{ou[3]}}</p>
+                          <button type="button" class="btn btn-info" (click)="openModal(ou)">
+                          Click for description</button>
+                  </div>
+              </div>
+        </div>
         </div>
     </div>
     <div class="col-md">
       <div class="header" id="paused">PAUSED</div>
-      <div class="box">
-          <div *ngFor="let i of arr">
-            {{i}}
-          </div>
+      <div class="box" *ngFor="let ou of entries, let i=index" >
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Paused'">
+              <div class="card">
+                  <div class="card-header" id="headingTwo">
+                          <p>{{ou[1]}}</p>
+                          <p>Assigned To: </p><p>{{ou[3]}}</p>
+                          <button type="button" class="btn btn-info" (click)="openModal(ou)">
+                          Click for description</button>
+                  </div>
+              </div>
+        </div>
         </div>
     </div>
     <div class="col-md">
       <div class="header" id="test">TESTING</div>
-      <div class="box">
-          <div *ngFor="let i of arr">
-            {{i}}
-          </div>
+      <div class="box" *ngFor="let ou of entries, let i=index" >
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Testing'">
+              <div class="card">
+                  <div class="card-header" id="headingTwo">
+                          <p>{{ou[1]}}</p>
+                          <p>Assigned To: </p><p>{{ou[3]}}</p>
+                          <button type="button" class="btn btn-info" (click)="openModal(ou)">
+                          Click for description</button>
+                  </div>
+              </div>
+        </div>
         </div>
     </div>
     <div class="col-md">
       <div class="header" id="prod">PRODUCTION</div>
-      <div class="box">
-          <div *ngFor="let i of arr">
-            {{i}}
-          </div>
+      <div class="box" *ngFor="let ou of entries, let i=index" >
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Production'">
+              <div class="card">
+                  <div class="card-header" id="headingTwo">
+                          <p>{{ou[1]}}</p>
+                          <p>Assigned To: </p><p>{{ou[3]}}</p>
+                          <button type="button" class="btn btn-info" (click)="openModal(ou)">
+                          Click for description</button>
+                  </div>
+              </div>
+        </div>
         </div>
     </div>
   </div>
@@ -78,25 +113,24 @@
     <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Modal Header</h4>
+            <h4 class="modal-title">{{tempentries[1]}}</h4>
           <button type="button" class="close" (click) = "closeModal1()">&times;</button>
           
         </div>
         <div class="modal-body">
             <div class="form-group">
                 <label for="comment">Project description:</label>
-                <textarea class="form-control" rows="5" id="comment" [disabled]="editdata">dsadasd</textarea>
-                <p><b>Assigned To :</b><span> fhgf</span></p>
-                <p><b>Assigned Date :</b><span> fhgf</span></p>
-                <p><b>Deadline :</b><span> fhgf</span></p>
-                <p><b>Completion Date :</b><span> fhgf</span></p>
-                <p><b>Status :</b></p><span> 
-                    <select class="form-control" [disabled]="editdata">
+                <textarea class="form-control" rows="5" id="comment" [disabled]="editdata">{{tempentries[2]}}</textarea>
+                <p><b>Assigned To :</b><span> {{tempentries[3]}}</span></p>
+                <p><b>Assigned Date :</b><span> {{tempentries[4]}}</span></p>
+                <p><b>Deadline :</b><span> {{tempentries[5]}}</span></p>
+                <p><b>Completion Date :</b><span> {{tempentries[6]}}</span></p>
+                <p><b>Status :</b>
+                  <select class="form-control" [disabled]="editdata" [(ngValue)]="tempentries[7]">
                         <option *ngFor="let st of status">{{st}}</option>
-                      </select>
-                </span>
+                      </select></p>
                 <label>Comments:</label>
-                <textarea class="form-control" rows="5" id="comment" [disabled]="editdata">dsadasd</textarea>
+                <textarea class="form-control" rows="5" id="comment" [disabled]="editdata">{{tempentries[8]}}</textarea>
               </div>
         </div>
         <div class="modal-footer">
