@@ -117,7 +117,18 @@ function getAll(auth) {
   );
 }
 
+//Use Routes
 app.use("/api/sheets", require("./routes/api/sheets"));
+
+//Serve static assets if in production
+if(process.env.NODE_ENV==='production'){
+  //Set a static folder
+  app.use(express.static('src'));
+
+  app.get('*',(req,res)=>{
+      res.sendFile(path.resolve(__dirname,'src','index.html'));
+  });
+}
 
 const port = process.env.PORT || 5000;
 
