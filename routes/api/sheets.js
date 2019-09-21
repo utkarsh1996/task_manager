@@ -71,13 +71,14 @@ router.get("/:sheetId", function(req, result) {
 // @acess Public
 router.post('/:sheetId',function(req,res){
   const sheets = google.sheets({ version: "v4", auth });
-  console.log('New ID here',i);
+  console.log('\n\n\n\n\n\n\n\nNew ID here',i);
+  console.log(req.body);
   sheets.spreadsheets.values.append({
     auth:auth,
     spreadsheetId:req.params.sheetId,
     range:`Sheet1!A${i+1}:I${i+1}`,
     valueInputOption: "USER_ENTERED",
-    resource: {values:[[i].concat(req.body)]}
+    resource: {values:[[i].concat(req.body['taskArray'])]}
   },(err,result)=>{
     if (err) {
       

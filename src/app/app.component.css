@@ -85,4 +85,8 @@
   border-radius: 4px;
   cursor: pointer;
 }
-
+.sample
+{
+    background-color: black;
+    color: #cb2d3e;
+}

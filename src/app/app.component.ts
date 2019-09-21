@@ -1,4 +1,4 @@
-
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { OnInit ,Output ,EventEmitter	} from '@angular/core';
@@ -8,7 +8,7 @@ import { OnInit ,Output ,EventEmitter	} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
+  constructor(private httpClient:HttpClient){}
   title = 'scrum-ui';
   arr = [1,2,3];
   assignedToSearch="" ;
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   completionDate="";
   comments="";
   taskStatus="Select Status";
-  
+  id="";
   ngOnInit()
   {
     this.display = 'block';
@@ -79,14 +79,13 @@ openModal(temp)
     this.editdata = false ;
   }
   getAllData(){
-    var id="";
     if(this.link[0]!='h'){
-      id = this.link.split('/')[3];
+      this.id = this.link.split('/')[3];
     }
     else{
-      id = this.link.split('/')[5];
+      this.id = this.link.split('/')[5];
     }
-    var res = this.httpGet('http://localhost:5000/api/sheets/'+id);
+    var res = this.httpGet('http://localhost:5000/api/sheets/'+this.id);
     this.closeModal();
     console.log(res);
     this.entries= null;
@@ -102,13 +101,30 @@ openModal(temp)
   }
   error=0;
   addTaskToFile(){
-
   if(this.taskName.length==0 || this.taskDesc.length==0 || this.AssignedTo.length==0 
     || this.AssignedDate.length==0 ||this.Deadline.length==0 || this.completionDate.length==0
      || this.comments.length==0 || this.taskStatus=="Select Status"){
         this.error=1;
   }
   else  this.error=0;
+  var taskArray = [];
+  taskArray[0] = this.taskName;
+  taskArray[1] = this.taskDesc;
+  taskArray[2] = this.AssignedTo;
+  taskArray[3] = this.AssignedDate;
+  taskArray[4] = this.Deadline;
+  taskArray[5] = this.completionDate;
+  taskArray[6] = this.taskStatus;
+  taskArray[7] = this.comments;
+  console.log(taskArray);
+  this.httpClient.post('http://localhost:5000/api/sheets/'+this.id,{
+    taskArray
+  }).subscribe(
+    (data:any) =>{
+      console.log(data);
+      this.closeTask();
+      this.getAllData();
+    }
+  )
 }
-
 }
