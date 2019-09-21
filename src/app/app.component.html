@@ -126,7 +126,7 @@
                 <p><b>Deadline :</b><span> {{tempentries[5]}}</span></p>
                 <p><b>Completion Date :</b><span> {{tempentries[6]}}</span></p>
                 <p><b>Status :</b>
-                  <select class="form-control" [disabled]="editdata" [(ngValue)]="tempentries[7]">
+                  <select class="form-control" [disabled]="editdata">
                         <option *ngFor="let st of status">{{st}}</option>
                       </select></p>
                 <label>Comments:</label>
