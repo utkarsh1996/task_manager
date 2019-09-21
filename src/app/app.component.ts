@@ -113,6 +113,8 @@ openModal(temp)
     this.error=0;
     this.successError=1;
   }
+  if(this.successError==1 && this.error==0)
+  {
   var taskArray = [];
   taskArray[0] = this.taskName;
   taskArray[1] = this.taskDesc;
@@ -132,5 +134,6 @@ openModal(temp)
       this.getAllData();
     }
   )
+  }
 }
 }
