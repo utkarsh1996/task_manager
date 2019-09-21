@@ -18,13 +18,19 @@ const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 const TOKEN_PATH = "token.json";
 
 // Load client secrets from a local file.
-/* app.get("/", (req, res) => {
+app.get("/", (req, res) => {
   fs.readFile("credentials.json", (err, content) => {
     if (err) return console.log("Error loading client secret file:", err);
     // Authorize a client with credentials, then call the Google Sheets API.
+    
     authorize(JSON.parse(content), getAll);
+    app.use(express.static('dist/scrum-ui'));
+
+    app.get('*',(req,res)=>{
+        res.sendFile(path.resolve('dist','scrum-ui','index.html'));
+    });
   });
-}); */
+}); 
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
