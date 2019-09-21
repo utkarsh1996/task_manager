@@ -1,0 +1,97 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="parent">
+    <div class="container-fluid">
+  <div class="row">
+    <div class="col-md">
+      <div class="header"  id="reject">REJECTED</div>
+      <div class="box">
+          <div *ngFor="let i of arr">
+            {{i}}
+          </div>
+        </div>
+    </div>
+    <div class="col-md">
+      <div class="header" id="pending">PENDING</div>
+      <div class="box">
+          <div *ngFor="let i of arr">
+            {{i}}
+          </div>
+        </div>
+    </div>
+    <div class="col-md">
+      <div class="header" id="dev">DEVELOPMENT</div>
+      <div class="box">
+          <div *ngFor="let i of arr">
+            {{i}}
+          </div>
+        </div>
+    </div>
+    <div class="col-md">
+      <div class="header" id="paused">PAUSED</div>
+      <div class="box">
+          <div *ngFor="let i of arr">
+            {{i}}
+          </div>
+        </div>
+    </div>
+    <div class="col-md">
+      <div class="header" id="test">TESTING</div>
+      <div class="box">
+          <div *ngFor="let i of arr">
+            {{i}}
+          </div>
+        </div>
+    </div>
+    <div class="col-md">
+      <div class="header" id="prod">PRODUCTION</div>
+      <div class="box">
+          <div *ngFor="let i of arr">
+            {{i}}
+          </div>
+        </div>
+    </div>
+  </div>
+  </div>
+    <!-- <div class="container-fluid">
+   <div class="row">
+    <div class="col-md box">
+      <div *ngFor="let i of arr">
+        {{i}}
+      </div>
+    </div>
+    <div class="col-md box" >
+        <div *ngFor="let i of arr">
+            {{i}}
+        </div>
+    </div>
+    <div class="col-md box" >
+        <div *ngFor="let i of arr">
+            {{i}}
+        </div>
+    </div>
+    <div class="col-md box" >
+        <div *ngFor="let i of arr">
+          
+        </div>
+    </div>
+    <div class="col-md box" >
+        <div *ngFor="let i of arr">
+          
+        </div>
+    </div>
+    <div class="col-md" >
+        <div *ngFor="let i of arr">
+          
+        </div>
+    </div>
+
+  </div>
+  </div> -->
+  <!-- <ng-template #tipContent><b>Click to add new Task</b>!</ng-template> -->
+  
+  <div><button title="click to add task" class="btn btn-success" style="z-index: +999; position: fixed; bottom: 8px; right: 3px;"  matTooltip="Info about the action">ADD NEW TASK</button></div>
+  
+</div>
+
+
+<router-outlet></router-outlet>

@@ -6,11 +6,7 @@ const router = express.Router();
 
 const TOKEN_PATH = "token.json";
 
-// @route GET api/sheets/:sheetId
-// @desc  Get All tasks from Google Spreadsheets with sheetId
-// @acess Public
-router.get("/:sheetId", (req, result) => {
-  credentials = fs.readFileSync("credentials.json", "UTF-8");
+credentials = fs.readFileSync("credentials.json", "UTF-8");
   var client_id = JSON.parse(credentials).installed.client_id;
   var client_secret = JSON.parse(credentials).installed.client_secret;
   var redirect_uris = JSON.parse(credentials).installed.redirect_uris;
@@ -23,6 +19,12 @@ router.get("/:sheetId", (req, result) => {
   var token = fs.readFileSync(TOKEN_PATH, "UTF-8");
   oAuth2Client.setCredentials(JSON.parse(token));
   auth = oAuth2Client;
+
+// @route GET api/sheets/:sheetId
+// @desc  Get All tasks from Google Spreadsheets with sheetId
+// @acess Public
+router.get("/:sheetId", (req, result) => {
+  
   const sheets = google.sheets({ version: "v4", auth });
 
   sheets.spreadsheets.values.get(
@@ -58,6 +60,8 @@ router.get("/:sheetId", (req, result) => {
 // @route POST api/sheets/:sheetId
 // @desc  POST Tasks to Google Spreadsheets with sheetId
 // @acess Public
-//router.post('/:sheetId',(err,res)=>{});
+router.post('/:sheetId',(err,res)=>{
+
+});
 
 module.exports = router;
