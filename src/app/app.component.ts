@@ -17,12 +17,14 @@ export class AppComponent implements OnInit {
   link = '';
    status = ["PENDING","REJECTED","DEVELOPMENT","PAUSED","TESTING","PRODUCTION"];
   display1 = 'none'  ;
+  addTask = 'none';
   editdata:boolean = true ;
   ngOnInit()
   {
     this.display = 'block';
     this.flag = false ;
     this.display1 = 'none' ;
+    this.addTask = 'none';
   }
   searchAssignedTo(){
   console.log("assignedToSearch = " + this.assignedToSearch);
@@ -40,6 +42,18 @@ openModal()
   closeModal1()
   {
     this.display1 = 'none' ;
+  }
+  openTask()
+  {
+    this.addTask = 'block';
+  }
+  closeTask()
+  {
+    this.addTask = 'none';
+  }
+  editData()
+  {
+    this.editdata = false ;
   }
   getAllData(){
     var id="";
