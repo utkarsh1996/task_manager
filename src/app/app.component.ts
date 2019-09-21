@@ -118,7 +118,7 @@ openModal(temp)
     }
     var res = this.httpGet('http://localhost:5000/api/sheets/'+this.id);
     this.closeModal();
-    console.log(res);
+    console.log('Shaurya',res);
     this.entries= null;
     this.entries= JSON.parse(res);
     this.entries = this.entries.msg ;

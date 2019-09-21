@@ -7,7 +7,7 @@ const { google } = require("googleapis");
 const axios=require('axios');
 
 const app = express();
-//app.use(cors());
+app.use(cors());
 
 app.use(express.json());
 // If modifying these scopes, delete token.json.
