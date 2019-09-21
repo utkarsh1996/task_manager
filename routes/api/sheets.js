@@ -6,10 +6,10 @@ const router = express.Router();
 
 const TOKEN_PATH = "token.json";
 
-// @route GET api/sheets
-// @desc  Get All tasks
+// @route GET api/sheets/:sheetId
+// @desc  Get All tasks from Google Spreadsheets with sheetId
 // @acess Public
-router.get("/", (req, result) => {
+router.get("/:sheetId", (req, result) => {
   credentials = fs.readFileSync("credentials.json", "UTF-8");
   var client_id = JSON.parse(credentials).installed.client_id;
   var client_secret = JSON.parse(credentials).installed.client_secret;
@@ -27,8 +27,8 @@ router.get("/", (req, result) => {
 
   sheets.spreadsheets.values.get(
     {
-      spreadsheetId: "1uqx6V4sODuvjSS6N2qV8W8l7E9yyEH9Kv-XP4dF_dBk",
-      range: "Sheet1!A1:I"
+      spreadsheetId: req.params.sheetId,
+      range: "Sheet1!A1:I",
     },
     (err, res) => {
       if (err) return console.log("The API returned an error: " + err);
@@ -54,5 +54,10 @@ router.get("/", (req, result) => {
     }
   );
 });
+
+// @route POST api/sheets/:sheetId
+// @desc  POST Tasks to Google Spreadsheets with sheetId
+// @acess Public
+//router.post('/:sheetId',(err,res)=>{});
 
 module.exports = router;
