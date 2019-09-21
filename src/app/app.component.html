@@ -13,7 +13,7 @@
     <div class="col-md">
       <div class="header"  id="reject">REJECTED</div>
       <div class="box" *ngFor="let ou of entries, let i=index"  >
-        <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Rejected'">
+        <div class="accordion" id="accordionExample" *ngIf="ou[7] == 'REJECTED'">
             <div class="card">
                 <div class="card-header" id="headingTwo">
                         <p>{{ou[1]}}</p>
@@ -28,7 +28,7 @@
     <div class="col-md">
       <div class="header" id="pending">PENDING</div>
       <div class="box" *ngFor="let ou of entries, let i=index" >
-          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Pending'">
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='PENDING'">
               <div class="card">
                   <div class="card-header" id="headingTwo">
                           <p>{{ou[1]}}</p>
@@ -43,7 +43,7 @@
     <div class="col-md">
       <div class="header" id="dev">DEVELOPMENT</div>
       <div class="box" *ngFor="let ou of entries, let i=index" >
-          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Development'">
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='DEVELOPMENT'">
               <div class="card">
                   <div class="card-header" id="headingTwo">
                           <p>{{ou[1]}}</p>
@@ -58,7 +58,7 @@
     <div class="col-md">
       <div class="header" id="paused">PAUSED</div>
       <div class="box" *ngFor="let ou of entries, let i=index" >
-          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Paused'">
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='PAUSED'">
               <div class="card">
                   <div class="card-header" id="headingTwo">
                           <p>{{ou[1]}}</p>
@@ -73,7 +73,7 @@
     <div class="col-md">
       <div class="header" id="test">TESTING</div>
       <div class="box" *ngFor="let ou of entries, let i=index" >
-          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Testing'">
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='TESTING'">
               <div class="card">
                   <div class="card-header" id="headingTwo">
                           <p>{{ou[1]}}</p>
@@ -88,7 +88,7 @@
     <div class="col-md">
       <div class="header" id="prod">PRODUCTION</div>
       <div class="box" *ngFor="let ou of entries, let i=index" >
-          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='Production'">
+          <div class="accordion" id="accordionExample" *ngIf="ou[7]=='PRODUCTION'">
               <div class="card">
                   <div class="card-header" id="headingTwo">
                           <p>{{ou[1]}}</p>
@@ -157,7 +157,6 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">Enter Google Spreadsheet Link</h4>
-          <button type="button" class="close" (click)="closeModal()">&times;</button>
         </div>
         
         <!-- Modal body -->
@@ -179,7 +178,7 @@
       <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <h4 class="modal-title">Modal Header</h4>
+              <h4 class="modal-title">Add new task</h4>
             <button type="button" class="close" (click) = "closeTask()">&times;</button>
             
           </div>
@@ -202,7 +201,6 @@
         <div class="modal-footer">
           <div class="foot">
               <button type="button" class="btn btn-success" (click)="addTaskToFile()">Save</button>
-              <button type="button" class="btn btn-default" (click) = "closeTask()">Close</button>
           </div>
           
         </div>
