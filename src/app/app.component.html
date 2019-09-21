@@ -1,6 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="parent" *ngIf="flag ">
     <div class="container-fluid">
+      <div class="row">
+          <input type="text" class="search-box" [(ngModel)]="assignedToSearch" id="search" placeholder="Search by Assigned to">
+          <!-- [(ngModel)]="assignedToSearch" (input)="searchAssigned($event)"-->
+          <input type="submit" class="search-button" (click)="searchAssignedTo()" value="Search">
+
+      </div>
   <div class="row">
     <div class="col-md">
       <div class="header"  id="reject">REJECTED</div>

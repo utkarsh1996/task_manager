@@ -1,4 +1,7 @@
-import { Component, OnInit ,Output ,EventEmitter	} from '@angular/core';
+
+import { Component } from '@angular/core';
+import {NgForm} from '@angular/forms';
+import { OnInit ,Output ,EventEmitter	} from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,6 +11,7 @@ export class AppComponent implements OnInit {
   
   title = 'scrum-ui';
   arr = [1,2,3];
+  assignedToSearch="" ;
   display = 'block';
   flag = false ;
   link = '';
@@ -16,6 +20,9 @@ export class AppComponent implements OnInit {
     this.display = 'block';
     this.flag = false ;
   }
+  searchAssignedTo(){
+  console.log("assignedToSearch = " + this.assignedToSearch);
+}
   closeModal()
   {
   this.display = 'none';
