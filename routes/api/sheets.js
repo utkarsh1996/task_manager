@@ -2,9 +2,12 @@ const express = require("express");
 const fs = require("fs");
 const readline = require("readline");
 const { google } = require("googleapis");
+const axios=require('axios');
 const router = express.Router();
 
 const TOKEN_PATH = "token.json";
+
+var i=0;
 
 credentials = fs.readFileSync("credentials.json", "UTF-8");
   var client_id = JSON.parse(credentials).installed.client_id;
@@ -23,7 +26,7 @@ credentials = fs.readFileSync("credentials.json", "UTF-8");
 // @route GET api/sheets/:sheetId
 // @desc  Get All tasks from Google Spreadsheets with sheetId
 // @acess Public
-router.get("/:sheetId", (req, result) => {
+router.get("/:sheetId", function(req, result) {
   
   const sheets = google.sheets({ version: "v4", auth });
 
@@ -32,7 +35,7 @@ router.get("/:sheetId", (req, result) => {
       spreadsheetId: req.params.sheetId,
       range: "Sheet1!A1:I",
     },
-    (err, res) => {
+    function(err, res) {
       if (err) return console.log("The API returned an error: " + err);
       console.log(res);
       const rows = res.data.values;
@@ -40,12 +43,16 @@ router.get("/:sheetId", (req, result) => {
         console.log(
           "taskid	taskname	taskdesc	assignedto	assigneddate	deadline	completiondate	status	comments	"
         );
+        i=0;
         rows.map(row => {
+          
           console.log(
             `${row[0]}, ${row[1]},${row[2]},${row[3]},${row[4]},${row[5]},${
               row[6]
             },${row[7]},${row[8]}`
           );
+          i++;
+          console.log('New ID',i);
           if (row[0] == 1) console.log(row[2]);
         });
 
@@ -57,11 +64,32 @@ router.get("/:sheetId", (req, result) => {
   );
 });
 
+
+
 // @route POST api/sheets/:sheetId
 // @desc  POST Tasks to Google Spreadsheets with sheetId
 // @acess Public
-router.post('/:sheetId',(err,res)=>{
+router.post('/:sheetId',function(req,res){
+  const sheets = google.sheets({ version: "v4", auth });
+  console.log('New ID here',i);
+  sheets.spreadsheets.values.append({
+    auth:auth,
+    spreadsheetId:req.params.sheetId,
+    range:`Sheet1!A${i+1}:I${i+1}`,
+    valueInputOption: "USER_ENTERED",
+    resource: {values:[[i].concat(req.body)]}
+  },(err,result)=>{
+    if (err) {
+      
+      console.log('The API returned an error: ' + err);
+      return;
+    }else{
+      //console.log('Object',arr);
+      console.log("Append Successfull");
+      return res.status(200).json({msg:'Success'}) ;
+    }
 
+  });
 });
 
 module.exports = router;
