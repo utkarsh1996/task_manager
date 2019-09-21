@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
     if (err) return console.log("Error loading client secret file:", err);
     // Authorize a client with credentials, then call the Google Sheets API.
     
-    authorize(JSON.parse(content), getAll);
+    //authorize(JSON.parse(content), getAll);
     app.use(express.static('dist/scrum-ui'));
 
     app.get('*',(req,res)=>{
