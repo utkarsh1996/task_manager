@@ -123,10 +123,10 @@ app.use("/api/sheets", require("./routes/api/sheets"));
 //Serve static assets if in production
 if(process.env.NODE_ENV==='production'){
   //Set a static folder
-  app.use(express.static('src'));
+  app.use(express.static('dist/scrum-ui'));
 
   app.get('*',(req,res)=>{
-      res.sendFile(path.resolve(__dirname,'src','index.html'));
+      res.sendFile(path.resolve(__dirname,'dist','scrum-ui','index.html'));
   });
 }
 

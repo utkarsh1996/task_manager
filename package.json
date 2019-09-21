@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev": "concurrently \"nodemon .\" \"npm run ng serve --open\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix src && npm run ng serve --open "
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm run ng build "
   },
   "author": "",
   "license": "ISC",
