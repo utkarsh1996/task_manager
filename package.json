@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "ng test",
-    "start": "ng serve",
+    "start": "node .",
     "ng": "ng",
     "build": "ng build",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev": "concurrently \"nodemon .\" \"npm run ng serve --open\""
+    "dev": "concurrently \"nodemon .\" \"npm run ng serve --open\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix src && npm run ng serve --open --prefix src"
   },
   "author": "",
   "license": "ISC",
