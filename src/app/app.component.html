@@ -121,25 +121,28 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="comment">Project description:</label>
-                <textarea class="form-control" rows="5" id="comment" [disabled]="editdata">{{tempentries[2]}}</textarea>
-                <p><b>Assigned To :</b><span> {{tempentries[3]}}</span></p>
-                <p><b>Assigned Date :</b><span> {{tempentries[4]}}</span></p>
-                <p><b>Deadline :</b><span> {{tempentries[5]}}</span></p>
-                <p><b>Completion Date :</b><span> {{tempentries[6]}}</span></p>
-                <p><b>Status :</b><span>{{tempentries[7]}}</span></p>
+                <textarea class="form-control" rows="5" id="comment" [disabled]="editdata" [(ngModel)]="tempentries[2]"></textarea>
+                <p><b>Assigned To :</b><span><input type="text" [(ngModel)]="tempentries[3]" [disabled]="editdata"></span></p>
+                <p><b>Assigned Date :</b><span><input type="text" [(ngModel)]="tempentries[4]" [disabled]="editdata"></span></p>
+                <p><b>Deadline :</b><span><input type="text" [(ngModel)]="tempentries[5]" [disabled]="editdata"> </span></p>
+                <p><b>Completion Date :</b><span><input type="text" [(ngModel)]="tempentries[6]" [disabled]="editdata"></span></p>
+                <p><b>Status :</b>
+                <input type="text" [(ngModel)]="tempentries[7]" [disabled]="editdata">
                 <!-- <span> 
                     <select class="form-control" [disabled]="editdata">
                         <option *ngFor="let st of status">{{st}}</option>
                       </select>
                 </span> -->
-                <label>Comments:</label>
-                <textarea class="form-control" rows="5" id="comment" [disabled]="editdata">{{tempentries[8]}}</textarea>
+                <p>
+                <label>Comments:</label></p>
+                <textarea class="form-control" rows="5" id="comment" [disabled]="editdata" [(ngModel)]="tempentries[8]"></textarea>
               </div>
         </div>
         <div class="modal-footer">
           <div class="foot">
-              <button type="button" class="btn btn-default" (click) = "editData()">Edit</button>
-              <button type="button" class="btn btn-default" (click) = "closeModal1()">Close</button>
+              <button type="button" class="btn btn-default" id="edit" (click) = "editData()" [disabled]="!editdata">Edit</button>
+              <button type="button" class="btn btn-default" id="edit" (click) = "applyData(tempentries)" [disabled]="editdata">Apply</button>
+              <button type="button" class="btn btn-default" (click) = "closeModal1()" [disabled]="!editdata">Close</button>
           </div>
           
         </div>

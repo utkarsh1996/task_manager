@@ -112,7 +112,7 @@ router.post('/:sheetId/:taskId',function(req,res){
         spreadsheetId:req.params.sheetId,
         range:`Sheet1!B${j}:I${j}`,
         valueInputOption: "USER_ENTERED",
-        resource: {values:[req.body]}
+        resource: {values:[req.body['req']]}
       },(err,result)=>{if (err) {
       
         console.log('The API returned an error: ' + err);

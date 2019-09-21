@@ -55,6 +55,7 @@ openModal(temp)
   closeModal1()
   {
     this.display1 = 'none' ;
+    this.editdata = true ;
   }
   openTask()
   {
@@ -78,6 +79,25 @@ openModal(temp)
   editData()
   {
     this.editdata = false ;
+    
+  }
+  applyData(data)
+  {
+    var req = [];
+    for(var i=1;i<data.length;++i)
+    {
+      req.push(data[i]);
+    }
+    this.httpClient.post('http://localhost:5000/api/sheets/'+this.id + "/"+data[0],{
+    req
+  }).subscribe(
+    (data:any) =>{
+      console.log(data);
+      this.closeTask();
+      this.getAllData();
+    }
+  )
+  this.closeModal1();
   }
   getAllData(){
     if(this.link[0]!='h'){
