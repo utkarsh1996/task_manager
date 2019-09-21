@@ -7,7 +7,7 @@ const { google } = require("googleapis");
 const axios=require('axios');
 
 const app = express();
-app.use(cors());
+//app.use(cors());
 
 app.use(express.json());
 // If modifying these scopes, delete token.json.
@@ -18,17 +18,11 @@ const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 const TOKEN_PATH = "token.json";
 
 // Load client secrets from a local file.
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
   fs.readFile("credentials.json", (err, content) => {
     if (err) return console.log("Error loading client secret file:", err);
     // Authorize a client with credentials, then call the Google Sheets API.
-    
-    //authorize(JSON.parse(content), getAll);
-    app.use(express.static('dist/scrum-ui'));
-
-    app.get('*',(req,res)=>{
-        res.sendFile(path.resolve('dist','scrum-ui','index.html'));
-    });
+    authorize(JSON.parse(content), getAll);
   });
 }); 
 
@@ -135,7 +129,7 @@ if(process.env.NODE_ENV==='production'){
   app.use(express.static('dist/scrum-ui'));
 
   app.get('*',(req,res)=>{
-      res.sendFile(path.resolve('dist','scrum-ui','index.html'));
+      res.sendFile(path.resolve(__dirname,'dist','scrum-ui','index.html'));
   });
 }
 
