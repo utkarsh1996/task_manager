@@ -92,4 +92,39 @@ router.post('/:sheetId',function(req,res){
   });
 });
 
+
+// @route UPDATE api/sheets/:sheetId/:taskId
+// @desc  UPDATE a specific Task from the Google Spreadsheets with sheetId and TaskId
+// @acess Public
+router.post('/:sheetId/:taskId',function(req,res){
+  const sheets = google.sheets({ version: "v4", auth });
+  axios.get(`http://localhost:5000/api/sheets/${req.params.sheetId}`).then(function(response){
+    
+  const tasks=response.data.msg;
+  j=0;
+  tasks.map(task=>{
+    j++;
+    console.log('Task',task);
+    if(task[0]==req.params.taskId){
+      sheets.spreadsheets.values.update({
+        auth:auth,
+        spreadsheetId:req.params.sheetId,
+        range:`Sheet1!B${j}:I${j}`,
+        valueInputOption: "USER_ENTERED",
+        resource: {values:[req.body]}
+      },(err,result)=>{if (err) {
+      
+        console.log('The API returned an error: ' + err);
+        return;
+      }else{
+        //console.log('Object',arr);
+        console.log("Update Successfull");
+        return res.status(200).json({msg:'Success'}) ;
+      }});
+      //break;
+    }
+  });
+  console.log('Response',response.data.msg)}).catch(function(error){console.log('Error',error)});
+});
+
 module.exports = router;

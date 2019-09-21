@@ -122,7 +122,7 @@ function getAll(auth) {
 
 //Use Routes
 app.use("/api/sheets", require("./routes/api/sheets"));
-console.log(__dirname);
+//console.log(__dirname);
 //Serve static assets if in production
 if(process.env.NODE_ENV==='production'){
   //Set a static folder
