@@ -13,6 +13,18 @@
     overflow: scroll;
     
 }
+.foot
+{
+    display: inline-block;
+}
+.modal
+{
+    overflow: scroll ;
+}
+.same
+{
+    display: inline-block;
+}
 .box
 {
     border-right: 1px solid black ;

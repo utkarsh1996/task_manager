@@ -15,19 +15,31 @@ export class AppComponent implements OnInit {
   display = 'block';
   flag = false ;
   link = '';
+   status = ["PENDING","REJECTED","DEVELOPMENT","PAUSED","TESTING","PRODUCTION"];
+  display1 = 'none'  ;
+  editdata:boolean = true ;
   ngOnInit()
   {
     this.display = 'block';
     this.flag = false ;
+    this.display1 = 'none' ;
   }
   searchAssignedTo(){
   console.log("assignedToSearch = " + this.assignedToSearch);
 }
+openModal()
+  {
+    this.display1 = 'block' ;
+  }
   closeModal()
   {
   this.display = 'none';
   this.flag = true ;
   console.log(this.link);
+  }
+  closeModal1()
+  {
+    this.display1 = 'none' ;
   }
   getAllData(){
     var id="";
