@@ -86,7 +86,8 @@ openModal(temp)
   if(cmp.length==0 || cmp=='' || cmp==undefined ||cmp==null)
   return true ;
   var str = this.assignedToSearch ;
-
+  cmp=cmp.toLowerCase();
+  str=str.toLowerCase();
   return cmp.includes(str)
 
 
