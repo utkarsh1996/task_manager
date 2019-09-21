@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="parent">
+<div class="parent" *ngIf="flag ">
     <div class="container-fluid">
   <div class="row">
     <div class="col-md">
@@ -102,10 +102,36 @@
   </div>
   </div> -->
   <!-- <ng-template #tipContent><b>Click to add new Task</b>!</ng-template> -->
-  
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      Open modal
+    </button>
   <div><button title="click to add task" class="btn btn-success" style="z-index: +999; position: fixed; bottom: 8px; right: 3px;"  matTooltip="Info about the action">ADD NEW TASK</button></div>
   
 </div>
 
-
+<ng-container *ngIf="display=='block'">
+  <div class="modal" [ngStyle]="{'display':display}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Enter Google Spreadsheet Link</h4>
+          <button type="button" class="close" (click)="closeModal()">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <label class="col-md-2">Link : </label><input class="col-md-10" type="text" [(ngModel)]="link">
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="getAllData()">Go to Scrum</button>
+        </div>
+        
+      </div>
+    </div>
+    </div>
+  </ng-container>
 <router-outlet></router-outlet>
