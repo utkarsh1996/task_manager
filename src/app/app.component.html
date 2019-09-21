@@ -5,6 +5,8 @@
           <input type="text" class="search-box" [(ngModel)]="assignedToSearch" id="search" placeholder="Search by Assigned to">
           <!-- [(ngModel)]="assignedToSearch" (input)="searchAssigned($event)"-->
           <input type="submit" class="search-button" (click)="searchAssignedTo()" value="Search">
+    </div>
+    <div class="sample">Please view sample Google Sheet. <a target="_blank" href="https://docs.google.com/spreadsheets/d/13ej4PSYs5oIxW1BkkD9icsrj86Yxp0m51ExVj58zf2U/edit#gid=0">Click here.</a></div>
 
       </div>
   <div class="row">
@@ -181,31 +183,31 @@
             
           </div>
           <div class="modal-body">
-              <div class="form-group">
-                  <label for="comment">Project description:</label>
-                  <textarea class="form-control" rows="5" id="comment" [disabled]="editdata">dsadasd</textarea>
-                  <p><b>Assigned To :</b><span> fhgf</span></p>
-                  <p><b>Assigned Date :</b><span> fhgf</span></p>
-                  <p><b>Deadline :</b><span> fhgf</span></p>
-                  <p><b>Completion Date :</b><span> fhgf</span></p>
-                  <p><b>Status :</b></p><span> 
-                      <select class="form-control" [disabled]="editdata">
-                          <option *ngFor="let st of status">{{st}}</option>
-                        </select>
-                  </span>
-                  <label>Comments:</label>
-                  <textarea class="form-control" rows="5" id="comment" [disabled]="editdata">dsadasd</textarea>
-                </div>
-          </div>
-          <div class="modal-footer">
-            <div class="foot">
-                <button type="button" class="btn btn-default" (click) = "closeTask()">Close</button>
-            </div>
-            
-          </div>
+            <div class="form-group">
+                <p><input class="form-control" type="text" placeholder="Task Name" [(ngModel)]="taskName" ></p>
+                <p><input class="form-control" type="text" placeholder="Task description" [(ngModel)]="taskDesc" ></p>
+                <p><input class="form-control" type="text" placeholder="Assigned To" [(ngModel)]="AssignedTo" ></p>
+                <p><input class="form-control" type="text" placeholder="Assigned Date" [(ngModel)]="AssignedDate" ></p>
+                <p><input class="form-control" type="text" placeholder="Deadline" [(ngModel)]="Deadline" ></p>
+                <p><input class="form-control" type="text" placeholder="Completion Date" [(ngModel)]="completionDate" ></p>
+                <p><select class="form-control" [(ngModel)]="taskStatus">
+                    <option>Select Status</option>
+                    <option *ngFor="let st of status">{{st}}</option>
+                  </select></p>
+                <p><textarea class="form-control" type="text" placeholder="Comments" rows="5" [(ngModel)]="comments" ></textarea></p>
+                <label *ngIf="error==1" style="color:red;">Please enter all the fields</label>
+              </div> 
         </div>
-        
+        <div class="modal-footer">
+          <div class="foot">
+              <button type="button" class="btn btn-success" (click)="addTaskToFile()">Save</button>
+              <button type="button" class="btn btn-default" (click) = "closeTask()">Close</button>
+          </div>
+          
+        </div>
       </div>
-      </div>
-   </ng-container>
+      
+    </div>
+    </div>
+ </ng-container>
 <router-outlet></router-outlet>
