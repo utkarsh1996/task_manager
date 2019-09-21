@@ -119,13 +119,13 @@ function getAll(auth) {
 
 //Use Routes
 app.use("/api/sheets", require("./routes/api/sheets"));
-
+console.log(__dirname);
 //Serve static assets if in production
 if(process.env.NODE_ENV==='production'){
   //Set a static folder
-  app.use(express.static('dist/scrum-ui'));
+  app.use(express.static(__dirname+'/dist/scrum-ui'));
 
-  app.get('*',(req,res)=>{
+  app.get('/*',(req,res)=>{
       res.sendFile(path.resolve(__dirname,'dist','scrum-ui','index.html'));
   });
 }

@@ -7,11 +7,11 @@
     "test": "ng test",
     "start": "node .",
     "ng": "ng",
-    "build": "ng build",
+    "build": "ng build --prod",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev": "concurrently \"nodemon .\" \"npm run ng serve --open\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm run ng build "
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm run ng build"
   },
   "author": "",
   "license": "ISC",
