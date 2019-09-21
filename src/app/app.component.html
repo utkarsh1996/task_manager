@@ -196,6 +196,9 @@
                   </select></p>
                 <p><textarea class="form-control" type="text" placeholder="Comments" rows="5" [(ngModel)]="comments" ></textarea></p>
                 <label *ngIf="error==1" style="color:red;">Please enter all the fields</label>
+                <div class="alert alert-success" *ngIf="successError==1">
+                    <strong>Saved!</strong>
+                  </div>
               </div> 
         </div>
         <div class="modal-footer">

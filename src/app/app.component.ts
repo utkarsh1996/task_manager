@@ -72,6 +72,7 @@ openModal(temp)
   closeTask()
   {
     this.error=0;
+    this.successError=0;
     this.addTask = 'none';
   }
   editData()
@@ -100,13 +101,18 @@ openModal(temp)
       return xmlHttp.responseText;
   }
   error=0;
+  successError=0;
   addTaskToFile(){
   if(this.taskName.length==0 || this.taskDesc.length==0 || this.AssignedTo.length==0 
     || this.AssignedDate.length==0 ||this.Deadline.length==0 || this.completionDate.length==0
      || this.comments.length==0 || this.taskStatus=="Select Status"){
         this.error=1;
+        this.successError=0;
   }
-  else  this.error=0;
+  else  {
+    this.error=0;
+    this.successError=1;
+  }
   var taskArray = [];
   taskArray[0] = this.taskName;
   taskArray[1] = this.taskDesc;
